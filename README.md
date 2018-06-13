@@ -1,5 +1,7 @@
 # node-svnlook
 
+[![Build Status](https://travis-ci.org/jdrickerd/node-svnlook.svg?branch=master)](https://travis-ci.org/jdrickerd/node-svnlook)
+
 A NodeJs wrapper for the svnlook utility. Contains all the methods exposed by the command line svnlook tool.
 
 ```
