@@ -1,7 +1,14 @@
 language: node_js
 node_js:
-  - "node"
+- node
 install:
-  - npm install -g eslint
+- npm install -g eslint
 script:
-  - eslint index.js
+- eslint index.js
+deploy:
+  provider: npm
+  email: jdrickerd@gmail.com  
+  api_key:
+    secure: cnRFYXDp+Bp4CgnofMVFwrlizPRwOGD4eNAm+ch30L+Vz2SDbV161vwinCfZpDpddflvITUmGSyBtYG0hMBd4N3Eu6GVxstb6le/rXw4EHtoU9MzyVipAudKYHJ+KNxq55ukSjB8Ri42jNfVR03JmvhnvDiarMAMNxkOrl5HmvPlgcrIRsZuTZJO9qSa15nlNEDikw3vLecx3hZ7z06PSrBTVF2CN882PxSbbiDvkv3lKfvtGhVzaBGhlQ7ClUHOR7kTrZtqRZk6zyQg99uIsSkOArsc1xivDGNp5rM4czoeuvG4JiLmyKH6ShuGNBlQJJ5YqdQEtRz496/2U+sL+4ttk+wGzSc1POefjLG9TAD465X+2QQE0heEL6D1sgYhGZPaPpOfP9kTIG9neqBUpBJPgGZInYz29ZpX9lwCKzp92mlSIKDBP6OuMkXoKIzInF+Nbp3iRacjq/DiTcjXLyafEx+8VP5Fv/WmW8/3+l6uL5LPhPwEnwOsUfQkd+XimgZdQNALmX3OTSwvF0jGuqvEww3YV5Bbsf6ba0bm6SM/JIqHAyB53EdToz/SoV3N4dUXqyVR+shKOBLjTp/0DHLYrjUDtTMF9YwTA8HlJ69IdeLUhK3KL1CbQ7d2r51LuFSjR4lEDBKxti/Qn4y4goDh3uukNrZyY0eS8lSPDlw=
+  on:
+    tags: true
