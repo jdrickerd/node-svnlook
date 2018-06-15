@@ -3,6 +3,17 @@
 
 var exec = require('child_process').exec;
 var os = require('os');
+var xml2js = require('xml2js');
+
+var xmlToJson = function (dataXml, callback) {
+	xml2js.parseString(dataXml,
+		{
+			explicitRoot: false,
+			explicitArray: false
+		},
+		function (err, json) { callback(err, json); }
+	);
+};
 
 var execute = function (cmd, options, callback) {
 	options = options || {};
@@ -29,6 +40,18 @@ var executeSvnlook = function (params, options, callback) {
 	options = options || {};
 	var cmd = 'svnlook ' + params.join(' ');
 	execute(cmd, options, callback);
+};
+
+var executeSvnlookXml = function (params, options, callback) {
+	executeSvnlook(params.concat(['--xml']), options, function (err, data) {
+		if (!err) {
+			xmlToJson(data, function (err2, json) {
+				callback(err2, json);
+			});
+		} else {
+			callback(err, null);
+		}
+	});
 };
 
 var addExtraOptions = function (validOptionsArray, options, addRevProp) {
@@ -209,7 +232,7 @@ var history = function (repoPath, target, options, callback) {
 };
 exports.history = history;
 
-/** Print the author, datestamp, log message size, and log message.
+/** Returns object with the author, date, log message size, and log message.
  * @function info
  * @param {string} repoPath - Path to repository
  * @param {object} [options] - Options object
@@ -222,7 +245,19 @@ var info = function (repoPath, options, callback) {
 	}
 	options = options || {};
 	addExtraOptions(['revision', 'transaction'], options);
-	executeSvnlook(['info', repoPath], options, callback);
+	executeSvnlook(['info', repoPath], options, function (err, data) {
+		if (!err) {
+			var json = {};
+			var parsedData = data.split('\r\n');
+			json.author = parsedData[0];
+			json.date = parsedData[1];
+			json.size = parsedData[2];
+			json.message = parsedData[3];
+			callback(err, json);
+		} else {
+			callback(err, null);
+		}
+	});
 };
 exports.info = info;
 
@@ -239,7 +274,20 @@ var lock = function (repoPath, target, options, callback) {
 		options = null;
 	}
 	options = options || {};
-	executeSvnlook(['lock', repoPath, target], options, callback);
+	executeSvnlook(['lock', repoPath, target], options, function (err, data) {
+		if (!err) {
+			var json = {};
+			var parsedData = data.split('\r\n');
+			parsedData.forEach((val) => {
+				if (val.split(':')[1]) {
+					json[val.split(':')[0]] = json[val.split(':')[1]];
+				}
+			});
+			callback(err, json);
+		} else {
+			callback(err, null);
+		}
+	});
 };
 exports.lock = lock;
 
@@ -299,7 +347,7 @@ var proplist = function (repoPath, target, options, callback) {
 	}
 	options = options || {};
 	addExtraOptions(['revision', 'transaction'], options, true);
-	executeSvnlook(['proplist', repoPath, target], options, callback);
+	executeSvnlookXml(['proplist', repoPath, target], options, callback);
 };
 exports.proplist = proplist;
 exports.plist = proplist;

@@ -17,7 +17,7 @@ Example usage
 var svnlook = require('node-svnlook');
 
 svnlook.changed('/my/svn/repo', 
-	{	// optional options object - can be passed to any command not just update
+	{	// optional options object - can be passed to any command not just changed
 		shell: "sh", 			// override shell used to execute command
 		cwd: process.cwd(),		// override working directory command is executed
 		revision: 33050,		// provide --revision to commands that accept it
@@ -57,7 +57,7 @@ svnlook.changed('/my/svn/repo',
 <dd><p>Print information about the history of a path in the repository (or the root directory if no path is supplied).</p>
 </dd>
 <dt><a href="#info">info(repoPath, [options], [callback])</a></dt>
-<dd><p>Print the author, datestamp, log message size, and log message.</p>
+<dd><p>Returns object with the author, date, log message size, and log message.</p>
 </dd>
 <dt><a href="#lock">lock(repoPath, target, [options], [callback])</a></dt>
 <dd><p>If a lock exists on a path in the repository, describe it.</p>
@@ -192,7 +192,7 @@ Print information about the history of a path in the repository (or the root dir
 <a name="info"></a>
 
 ## info(repoPath, [options], [callback])
-Print the author, datestamp, log message size, and log message.
+Returns object with the author, date, log message size, and log message.
 
 **Kind**: global function  
 
