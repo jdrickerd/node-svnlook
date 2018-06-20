@@ -1,6 +1,6 @@
 {
   "name": "node-svnlook",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A NodeJs wrapper for the svnlook utility.",
   "main": "index.js",
   "scripts": {
@@ -21,6 +21,11 @@
     "url": "https://github.com/jdrickerd/node-svnlook/issues"
   },
   "homepage": "https://github.com/jdrickerd/node-svnlook#readme",
+  "ignore": [
+    ".travis.yml",
+    ".gitignore",
+    ".eslintrc.json"
+  ],
   "dependencies": {
     "xml2js": "^0.4.17"
   },
