@@ -3,6 +3,7 @@ node_js:
 - node
 install:
 - npm install -g eslint
+- npm install -g mocha
 deploy:
   provider: npm
   email: jdrickerd@gmail.com  
