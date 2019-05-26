@@ -3,8 +3,9 @@ node_js:
 - node
 install:
 - npm install -g eslint
-script:
-- eslint index.js
+- npm install -g mocha
+- npm install -g mocha-eslint
+- npm install
 deploy:
   provider: npm
   email: jdrickerd@gmail.com  

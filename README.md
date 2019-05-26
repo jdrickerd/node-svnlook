@@ -297,3 +297,8 @@ Print the youngest revision number.
 | repoPath | <code>string</code> | Path to repository |
 | [options] | <code>object</code> | Options object |
 | [callback] | <code>function</code> | Complete callback |
+
+
+
+## Attributions
+This project relied heavily on the design of [node-svn-ultimate](https://github.com/peteward44/node-svn-ultimate).
