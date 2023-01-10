@@ -248,7 +248,7 @@ var info = function (repoPath, options, callback) {
 	executeSvnlook(['info', repoPath], options, function (err, data) {
 		if (!err) {
 			var json = {};
-			var parsedData = data.split('\r\n');
+			var parsedData = data.split(os.EOL);
 			json.author = parsedData[0];
 			json.date = parsedData[1];
 			json.size = parsedData[2];
@@ -277,7 +277,7 @@ var lock = function (repoPath, target, options, callback) {
 	executeSvnlook(['lock', repoPath, target], options, function (err, data) {
 		if (!err) {
 			var json = {};
-			var parsedData = data.split('\r\n');
+			var parsedData = data.split(os.EOL);
 			parsedData.forEach((val) => {
 				if (val.split(':')[1]) {
 					json[val.split(':')[0]] = json[val.split(':')[1]];
