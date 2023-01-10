@@ -2,7 +2,7 @@
 
 
 [![npm](https://img.shields.io/npm/v/npm.svg)](https://www.npmjs.com/package/node-svnlook)
-[![Build Status](https://travis-ci.org/jdrickerd/node-svnlook.svg?branch=master)](https://travis-ci.org/jdrickerd/node-svnlook)
+[![Build Status](https://app.travis-ci.com/jdrickerd/node-svnlook.svg?branch=master)](https://app.travis-ci.com/jdrickerd/node-svnlook)
 [![npm](https://img.shields.io/npm/l/express.svg)](https://www.npmjs.com/package/node-svnlook)
 
 A NodeJs wrapper for the svnlook utility. Contains all the methods exposed by the command line svnlook tool.
