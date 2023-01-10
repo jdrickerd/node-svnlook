@@ -1,11 +1,6 @@
 language: node_js
 node_js:
-- node
-install:
-- npm install -g eslint
-- npm install -g mocha
-- npm install -g mocha-eslint
-- npm install
+- 17
 deploy:
   provider: npm
   email: jdrickerd@gmail.com  
